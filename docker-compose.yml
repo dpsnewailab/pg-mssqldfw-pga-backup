@@ -1,0 +1,51 @@
+version: "2.3"
+services:
+  postgresql:
+    container_name: postgresql
+    restart: always
+    env_file:
+      - .env
+    build:
+      args:
+        - POSTGRES_VERSION=${POSTGRES_VERSION}
+        - TDS_FDW_VERSION=${TDS_FDW_VERSION}
+      dockerfile: Dockerfile
+      context: psql
+    ports:
+      - 5432:5432
+    volumes:
+      - ./volumes/psql:${PGDATA}
+      - ./volumes/backup:/backup
+    networks:
+      - database-network
+
+  postgresql_backup:
+    container_name: postgresql_backup
+    restart: always
+    env_file:
+      - .env
+    build:
+      dockerfile: Dockerfile
+      context: ./backup
+    environment:
+      - BACKUP_EVERY_HOURS=10
+      - TZ=Asia/Ho_Chi_Minh
+    networks:
+      - database-network
+    entrypoint: ["sh", "./run.sh"]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  pgadmin:
+    image: thajeztah/pgadmin4
+    restart: always
+    container_name: pgadmin
+    ports:
+      - 5050:5050
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+    networks:
+      - database-network
+
+networks:
+  database-network:
