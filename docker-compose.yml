@@ -27,9 +27,6 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./backup
-    environment:
-      - BACKUP_EVERY_HOURS=10
-      - TZ=Asia/Ho_Chi_Minh
     networks:
       - database-network
     entrypoint: ["sh", "./run.sh"]

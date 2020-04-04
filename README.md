@@ -1,11 +1,16 @@
 #### Cài đặt postgresql + data wrapper + backup agent + pgadmin  
 
-#####1. Lệnh khởi tạo database và extension
+##### 0. Chạy thử
+
+``source .env && docker-compose up -d``
+
+
+##### 1. Lệnh khởi tạo database và extension
 Khởi tạo database và dữ liệu mẫu nằm tại `psql/script.sql`
 
 Khởi tạo foreign wrapper và database tại `psql/init_script.sh` (từ dòng `7` đến dòng `15`)
 
-#####2. Các tham số cài đặt
+##### 2. Các tham số cài đặt
 
 Các cài đặt server được cấu hình trong `.env` gồm 
 
@@ -25,7 +30,7 @@ Các cài đặt server được cấu hình trong `.env` gồm
 |`DELETE_BACKUP_AFTER_DAYS`|Dữ liệu backup được lưu lâu nhất bao nhiêu ngày|`7`|
 
 
-#####3. Cài đặt
+##### 3. Cài đặt
 
 ** Lấy quyền supper user trước khi cài đặt và sau đó chạy lệnh:
 
