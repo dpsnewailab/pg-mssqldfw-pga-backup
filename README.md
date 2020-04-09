@@ -26,7 +26,8 @@ Các cài đặt server được cấu hình trong `.env` gồm
 |`MSSQL_HOST`|Microsoft SQL host|`localhost`|
 |`MSSQL_USER`|Microsoft SQL user|`sa`|
 |`MSSQL_PASSWORD`|Microsoft SQL password|`MSSQL_PASSWORD`|
-|`BACKUP_EVERY_HOURS`|Thời gian chạy backup theo giờ|`10`|
+|`BACKUP_AT_TIME`|Thời gian chạy backup theo giờ trong ngày|`23:59`|
+|`BACKUP_EVERY_HOURS`|Thời gian chạy backup mỗi giờ. Để bật thì set `BACKUP_AT_TIME=-1`|`10`|
 |`DELETE_BACKUP_AFTER_DAYS`|Dữ liệu backup được lưu lâu nhất bao nhiêu ngày|`7`|
 
 
